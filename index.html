@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For My Ishu ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffc3a0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            animation: floatUp linear infinite;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translateY(-115vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main card */
+        .card {
+            width: 90%;
+            max-width: 430px;
+            padding: 30px 22px;
+            margin: 25px 0;
+            text-align: center;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.19);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 50px rgba(130, 0, 50, 0.2);
+            backdrop-filter: blur(12px);
+            position: relative;
+            z-index: 2;
+            animation: appear 1s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .top-heart {
+            font-size: 55px;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        h1 {
+            font-size: 30px;
+            margin: 12px 0;
+            text-shadow: 0 3px 12px rgba(120, 0, 40, 0.2);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Envelope */
+        .envelope {
+            font-size: 75px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px 0;
+            transition: 0.4s;
+            animation: bounce 2s infinite;
+        }
+
+        .envelope:hover {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .tap {
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        /* Hidden letter */
+        .letter {
+            display: none;
+            background: rgba(255, 255, 255, 0.94);
+            color: #b51e55;
+            padding: 22px 18px;
+            border-radius: 22px;
+            text-align: left;
+            line-height: 1.85;
+            font-size: 15px;
+            animation: letterOpen 0.7s ease;
+        }
+
+        @keyframes letterOpen {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .letter h2 {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+
+        .letter p {
+            margin-bottom: 12px;
+        }
+
+        .signature {
+            text-align: right;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .question {
+            display: none;
+            margin-top: 22px;
+            animation: appear 0.8s ease;
+        }
+
+        .question h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .question p {
+            margin-bottom: 18px;
+        }
+
+        button {
+            border: none;
+            padding: 12px 23px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        .yes {
+            background: #fff;
+            color: #ec3974;
+            box-shadow: 0 5px 18px rgba(130, 0, 50, 0.2);
+        }
+
+        .yes:hover {
+            transform: scale(1.1);
+            background: #ffe5ee;
+        }
+
+        .no {
+            background: rgba(255, 255, 255, 0.22);
+            color: white;
+            border: 1px solid white;
+        }
+
+        .no:hover {
+            transform: scale(1.05);
+        }
+
+        #response {
+            display: none;
+            margin-top: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.7;
+        }
+
+        .footer {
+            font-size: 12px;
+            margin-top: 23px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 380px) {
+            h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="top-heart">💗</div>
+
+        <h1>I'm Sorry, meri kuchupuchuuuu 🥺</h1>
+
+        <p class="subtitle">
+            Aap mere liye bahut special hain... ❤️<br>
+            Kya main aapse dil ki ek baat keh sakta hoon?
+        </p>
+
+        <div class="envelope" onclick="openLetter()">💌</div>
+
+        <p class="tap">👆 Aapke liye ek chhota sa letter hai</p>
+
+        <div class="letter" id="letter">
+
+            <h2>Dear Ishu 💖</h2>
+
+            <p>
+                Pata hai, shayad meri kisi baat se aapko dukh hua hai...
+                kal raat ko main kuch jyda sayd bol raha tha kamina ladka hu na
+                mujhe waise nhi krna chahiye tha pr kya kru main bhi thoda
+                chida hua tha 🥺💔
+            </p>
+
+            <p>
+                Main yeh nahi kahunga ki main hamesha sahi hoon.
+                Mujhse galti ho sakti hai, lekin main apni galti samajhne
+                aur khud ko behtar banane ki poori koshish karna chahta hoon. ❤️
+            </p>
+
+            <p>
+                Aapki smile mere liye bahut precious hai. 🫶
+                Main nahi chahta ki meri wajah se woh smile kho jaaye.
+                Main aapki feelings ko samajhna chahta hoon,
+                aapki baat sunna chahta hoon aur aapko woh respect dena
+                chahta hoon jiski aap haqdar hain. 🌹
+            </p>
+
+            <p>
+                Main aapse perfect hone ka promise nahi kar sakta,
+                lekin apni galtiyon se seekhne aur hamare rishte ko
+                pyaar aur samajhdaari se nibhane ki koshish zaroor karunga. 💗
+                main aaj bhi aapko utna hi pyar krta hu jeetna krta tha phle
+                aur krta bhi rahunga aapko aap bass sath mat chhodna .
+                kal isliye waise ho gaya tha kyu ki aap baat hi nhi krti mujhe
+                chid lagne laga tha .
+
+
+            <p>
+                Bas ek baat kehni hai...
+                <b>I am really, truly sorry, Ishudiiiiiii. 🥹❤️</b>
+            </p>
+
+            <p>
+                Aap mere liye sirf ek insaan nahi,
+                balki meri zindagi ka ek bahut khoobsurat hissa hain. 💞
+            </p>
+
+            <p class="signature">
+                Hamesha aapka ❤️<br>
+                Aapka pagal sa person 🫶
+            </p>
+
+        </div>
+
+        <div class="question" id="question">
+
+            <h2>Babuu, ek baat poochun? 🥺💗</h2>
+
+            <p>
+                Kya aap mujhe maaf kar dengi?<br>
+                Ek chhota sa chance dengi apni galti sudharne ka? 🌷
+            </p>
+
+            <button class="yes" onclick="sayYes()">
+                Haan, maaf kiya ❤️
+            </button>
+
+            <button class="no" onclick="sayNo()">
+                Abhi nahi 🥺
+            </button>
+
+            <div id="response"></div>
+
+        </div>
+
+        <div class="footer">
+            Made with lots of love, just for you 💖
+        </div>
+
+    </div>
+
+    <script>
+
+        // Floating hearts animation
+        const heartSymbols = ["❤️", "💗", "💕", "💖", "💘", "💞", "🌸"];
+
+        function createHeart() {
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+            heart.innerHTML =
+                heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (15 + Math.random() * 25) + "px";
+            heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 11000);
+        }
+
+        setInterval(createHeart, 350);
+
+
+        // Open the letter
+        function openLetter() {
+            const letter = document.getElementById("letter");
+            const question = document.getElementById("question");
+            const envelope = document.querySelector(".envelope");
+            const tap = document.querySelector(".tap");
+
+            letter.style.display = "block";
+            question.style.display = "block";
+
+            envelope.style.display = "none";
+            tap.style.display = "none";
+
+            letter.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+        }
+
+
+        // When she clicks YES
+        function sayYes() {
+            const response = document.getElementById("response");
+
+            response.style.display = "block";
+
+            response.innerHTML =
+                "Awww 🥹❤️💋<br>" +
+                "Thank you, meri pyaari jaan! 💗<br>" +
+                "Main aapko bhut bhut jyda pyar dunga.<br>" +
+                "aur dubara koi glti nhi krunga jishe aapko takleef ho. 🌹<br>" +
+                "Aapko hamesha khush rakhne ka try krunga, meri jaan! 🫶💕";
+
+            launchHearts();
+        }
+
+
+        // When she clicks NOT YET
+        function sayNo() {
+            const response = document.getElementById("response");
+
+            response.style.display = "block";
+
+            response.innerHTML =
+                "Koi baat nahi, Shona. 🥺💗<br>" +
+                "Aapko jitna waqt chahein le sakti hain.<br>" +
+                "Main aapki feelings aur aapke decision ka respect karta hoon ❤️.<br>" +
+                "pr fir bhi i love you kutti kamini ishudiiiiiiiiiiiiiiii.";
+        }
+
+
+        // Extra hearts when YES is clicked
+        function launchHearts() {
+            for (let i = 0; i < 35; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
